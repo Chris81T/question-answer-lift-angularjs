@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Foundation 4</title>
+
+    <link rel="stylesheet" href="css/normalize.css"/>
+
+    <link rel="stylesheet" href="css/foundation.css"/>
+
+
+    <script src="js/vendor/custom.modernizr.js"></script>
+
+    <script src="js/jquery/jquery-1.9.1.js"></script>
+    <script src="js/angular-1.0.5/angular.js"></script>
+
+</head>
+<body>
+
+<div ng-app>
+
+<div class="row">
+    <div class="panel">
+        <h3>
+            <small>Example project is using Foundation 4 / AngularJS (for Client Side) and Lift (for Server Side)
+            </small>
+        </h3>
+    </div>
+</div>
+
+<section class="row">
+    <header class=""><h4>Ask a question:</h4></header>
+    <div class="large-8 columns"><input type="text"></input></div>
+    <div class="large-4 columns"><button class="small button">Ask</button></div>
+</section>
+
+<section class="row">
+    <header><h4>List of all questions:</h4></header>
+    <section ng-controller="QuestionsCtrl">
+        <div class="row">
+            <strong>Total size: {{questions.length}}</strong>
+        </div>
+        <div class="row">
+            <div class="panel" style="background-color: #a3ddff;" ng-repeat="question in questions">
+                <div class="row">
+                    <div class="large-7 columns">
+                        <div class="row">
+                            <h3><small>{{question.msg}}</small></h3>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns">
+                                <span class="radius success label">{{question.timestamp}}</span>
+                            </div>
+                            <div data-bind="if: $data.answer != null" class="large-6 columns">
+                                <div class="radius label">Answer: <span data-bind="text: $data.answer.message"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-5 columns">
+                        <div data-bind="if: $data.answer == null">
+                            <button
+                                class="large button expand"
+                                style="margin-top: 20px;"
+                                data-bind="click: $parent.prepareAnswer">Answer</button>
+                        </div>
+                    </div>
+                <div/>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script>
+    function QuestionsCtrl($scope) {
+        $scope.questions = [
+            {"id" : "0", "msg" : "Is everything okay?", "timestamp" : "09.03.2013 19:47:43"},
+            {"id" : "1", "msg" : "How many bond films do you know?", "timestamp" : "08.03.2013 11:16:14"}];
+
+        var addQuestion = function(question) {
+            console.log("add question = " + question)
+            $scope.questions.unshift(question);
+        }
+    }
+
+    addQuestion("Where do you want to go today?");
+</script>
+
+<!--
+<script>
+    document.write('<script src=' +
+            ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+            '.js><\/script>')
+</script>
+-->
+
+<script src="js/foundation.min.js"></script>
+<script src="js/foundation/foundation.reveal.js"></script>
+
+<!--
+
+<script src="js/foundation/foundation.js"></script>
+
+<script src="js/foundation/foundation.dropdown.js"></script>
+
+<script src="js/foundation/foundation.alerts.js"></script>
+
+<script src="js/foundation/foundation.clearing.js"></script>
+
+<script src="js/foundation/foundation.placeholder.js"></script>
+
+<script src="js/foundation/foundation.forms.js"></script>
+
+<script src="js/foundation/foundation.cookie.js"></script>
+
+<script src="js/foundation/foundation.joyride.js"></script>
+
+<script src="js/foundation/foundation.magellan.js"></script>
+
+<script src="js/foundation/foundation.orbit.js"></script>
+
+<script src="js/foundation/foundation.section.js"></script>
+
+<script src="js/foundation/foundation.tooltips.js"></script>
+
+<script src="js/foundation/foundation.topbar.js"></script>
+
+-->
+
+<script>
+    $(document).foundation();
+</script>
+</div>
+</body>
+</html>
